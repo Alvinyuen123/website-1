@@ -1,0 +1,17 @@
+<%- include('layout', { body: `
+  <main class="auth-shell">
+    <section class="glass-panel auth-card">
+      <p class="eyebrow">Admin access</p>
+      <h1>Enter Password</h1>
+      <p class="subtitle">Protected panel for managing services, themes, and webhook alerts.</p>
+      ${error ? `<div class="error-banner">${error}</div>` : ''}
+      <form method="POST" action="/admin/login" class="stack-form">
+        <label>
+          <span>Password</span>
+          <input type="password" name="password" placeholder="Default: 123" required />
+        </label>
+        <button class="button primary" type="submit">Unlock</button>
+      </form>
+    </section>
+  </main>
+`, settings, theme: 'glass', customCss: '', title: 'Admin Login' }) %>

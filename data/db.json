@@ -1,0 +1,64 @@
+{
+  "settings": {
+    "dashboardTitle": "Web Hub",
+    "dashboardSubtitle": "A lightweight landing zone for your self-hosted services.",
+    "theme": "glass",
+    "customCss": ""
+  },
+  "services": [
+    {
+      "id": "service_1782686790656_ai7ej6",
+      "name": "google",
+      "url": "https://google.com/",
+      "description": "",
+      "icon": "◉",
+      "checkStatus": true,
+      "status": "online",
+      "lastChecked": "2026-06-28T22:50:10.317Z",
+      "lastResponseTime": "50ms",
+      "previewNote": ""
+    },
+    {
+      "id": "service_1782686806527_kp62kz",
+      "name": "nextcloud",
+      "url": "https://nextcloud.aquamanyuen.synology.me/",
+      "description": "",
+      "icon": "◉",
+      "checkStatus": true,
+      "status": "online",
+      "lastChecked": "2026-06-28T22:50:10.521Z",
+      "lastResponseTime": "203ms",
+      "previewNote": ""
+    },
+    {
+      "id": "service_1782686834608_swv5h7",
+      "name": "nigger",
+      "url": "https://nigger.nl/",
+      "description": "",
+      "icon": "◉",
+      "checkStatus": true,
+      "status": "offline",
+      "lastChecked": "2026-06-28T22:50:12.580Z",
+      "lastResponseTime": null,
+      "previewNote": ""
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notification_1782686626591_148muc",
+      "type": "amp-webhook",
+      "title": "Instance Update",
+      "message": "Instance restarted successfully",
+      "level": "success",
+      "payload": {
+        "title": "Instance Update",
+        "message": "Instance restarted successfully",
+        "level": "success",
+        "timestamp": "2026-06-29T12:00:00Z",
+        "cpu": 32,
+        "ram": 48
+      },
+      "timestamp": "2026-06-29T12:00:00Z"
+    }
+  ]
+}

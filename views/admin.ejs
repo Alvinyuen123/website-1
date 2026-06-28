@@ -1,0 +1,77 @@
+<%- include('layout', { body: `
+  <header class="topbar glass-panel">
+    <div>
+      <p class="eyebrow">Admin panel</p>
+      <h1>Manage Hub</h1>
+      <p class="subtitle">Add services, tune themes, and control live checking.</p>
+    </div>
+    <nav class="top-actions">
+      <form method="POST" action="/admin/logout">
+        <button class="button secondary" type="submit">Logout</button>
+      </form>
+      <a class="button secondary" href="/">Back to dashboard</a>
+    </nav>
+  </header>
+
+  <main class="page-shell admin-grid">
+    <section class="glass-panel admin-section">
+      <h2>Add Service</h2>
+      <form method="POST" action="/admin/services" class="stack-form">
+        <div class="form-grid">
+          <label><span>Name</span><input name="name" required /></label>
+          <label><span>URL</span><input name="url" type="url" placeholder="https://service.example.com" required /></label>
+          <label><span>Icon</span><input name="icon" placeholder="◉" /></label>
+          <label class="full"><span>Description</span><textarea name="description" rows="3"></textarea></label>
+        </div>
+        <label class="checkbox-row"><input type="checkbox" name="checkStatus" checked /> <span>Enable live status checking</span></label>
+        <button class="button primary" type="submit">Add Service</button>
+      </form>
+    </section>
+
+    <section class="glass-panel admin-section">
+      <h2>Theme Settings</h2>
+      <form method="POST" action="/admin/settings" class="stack-form">
+        <label><span>Dashboard Title</span><input name="dashboardTitle" value="${settings.dashboardTitle}" /></label>
+        <label><span>Dashboard Subtitle</span><input name="dashboardSubtitle" value="${settings.dashboardSubtitle}" /></label>
+        <label>
+          <span>Theme</span>
+          <select name="theme">
+            <option value="glass" ${settings.theme === 'glass' ? 'selected' : ''}>Dark Glassmorphism</option>
+            <option value="neon" ${settings.theme === 'neon' ? 'selected' : ''}>Cyberpunk / Neon</option>
+            <option value="light" ${settings.theme === 'light' ? 'selected' : ''}>Clean Material Light</option>
+          </select>
+        </label>
+        <label><span>Custom CSS</span><textarea name="customCss" rows="10" placeholder="Paste custom CSS here to override the theme.">${settings.customCss || ''}</textarea></label>
+        <button class="button primary" type="submit">Save Settings</button>
+      </form>
+    </section>
+
+    <section class="glass-panel admin-section admin-services">
+      <div class="section-heading">
+        <h2>Services</h2>
+        <form method="POST" action="/admin/services/recheck">
+          <button class="button secondary" type="submit">Recheck Status</button>
+        </form>
+      </div>
+      <div class="admin-service-list">
+        ${services.length ? services.map((service) => `
+          <form method="POST" action="/admin/services/${service.id}" class="service-editor">
+            <div class="form-grid compact">
+              <label><span>Name</span><input name="name" value="${service.name}" required /></label>
+              <label><span>URL</span><input name="url" value="${service.url}" required /></label>
+              <label><span>Icon</span><input name="icon" value="${service.icon || ''}" /></label>
+              <label class="full"><span>Description</span><textarea name="description" rows="2">${service.description || ''}</textarea></label>
+            </div>
+            <label class="checkbox-row"><input type="checkbox" name="checkStatus" ${service.checkStatus ? 'checked' : ''} /> <span>Enable live status checking</span></label>
+            <div class="service-editor-actions">
+              <button class="button primary" type="submit">Save</button>
+            </div>
+          </form>
+          <form method="POST" action="/admin/services/${service.id}/delete" class="inline-delete">
+            <button class="button danger" type="submit">Delete ${service.name}</button>
+          </form>
+        `).join('') : '<div class="empty-state">No services added yet.</div>'}
+      </div>
+    </section>
+  </main>
+`, settings, theme, customCss, title: 'Admin Panel' }) %>

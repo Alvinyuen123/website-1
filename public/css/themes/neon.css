@@ -1,0 +1,26 @@
+:root {
+  color-scheme: dark;
+  --bg: #05050b;
+  --panel: rgba(10, 12, 24, 0.78);
+  --panel-border: rgba(0, 245, 255, 0.22);
+  --text: #f7fbff;
+  --muted: #82a4c5;
+  --accent: #00f5ff;
+  --accent-2: #ff4fd8;
+  --shadow: 0 0 0 1px rgba(0, 245, 255, 0.08), 0 0 40px rgba(0, 245, 255, 0.12);
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 79, 216, 0.16), transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(0, 245, 255, 0.14), transparent 22%),
+    linear-gradient(180deg, #020208 0%, #070913 100%);
+}
+
+.button.primary {
+  box-shadow: 0 0 18px rgba(0, 245, 255, 0.35);
+}
+
+.service-card:hover::after {
+  border-color: rgba(255, 79, 216, 0.6);
+}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || settings.dashboardTitle %></title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/themes/<%= theme || settings.theme %>.css" />
+  <style><%- customCss || settings.customCss || '' %></style>
+</head>
+<body class="theme-<%= theme || settings.theme %>">
+  <%- body %>
+  <script src="/js/app.js"></script>
+</body>
+</html>

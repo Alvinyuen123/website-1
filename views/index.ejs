@@ -1,0 +1,48 @@
+<%- include('layout', { body: `
+  <header class="topbar glass-panel">
+    <div>
+      <p class="eyebrow">Self-hosted hub</p>
+      <h1>${title}</h1>
+      <p class="subtitle">${subtitle}</p>
+    </div>
+    <nav class="top-actions">
+      <a class="button secondary" href="/notifications">Notifications</a>
+      <a class="button secondary" href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="stats-row">
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Total Services</span>
+        <strong>${services.length}</strong>
+      </div>
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Online</span>
+        <strong>${services.filter((service) => service.status === 'online').length}</strong>
+      </div>
+      <div class="glass-panel stat-card">
+        <span class="stat-label">Notifications</span>
+        <strong>${notifications.length}</strong>
+      </div>
+    </section>
+
+    <section class="service-grid" id="serviceGrid">
+      ${services.map((service) => `
+        <article class="glass-panel service-card" data-preview="${service.description || 'Preview unavailable'}">
+          <div class="service-card__header">
+            <div class="service-icon">${service.icon || '◉'}</div>
+            <span class="status-badge status-${service.status}">${service.status}</span>
+          </div>
+          <h2>${service.name}</h2>
+          <p>${service.description || 'No description available.'}</p>
+          <a href="${service.url}" target="_blank" rel="noreferrer">${service.url}</a>
+          <div class="service-meta">
+            <span>${service.checkStatus ? 'Live checks enabled' : 'Live checks disabled'}</span>
+            <span>${service.lastResponseTime || 'n/a'}</span>
+          </div>
+        </article>
+      `).join('')}
+    </section>
+  </main>
+`, settings, theme, customCss, title }) %>

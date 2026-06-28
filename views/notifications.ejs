@@ -1,0 +1,28 @@
+<%- include('layout', { body: `
+  <header class="topbar glass-panel">
+    <div>
+      <p class="eyebrow">Webhook feed</p>
+      <h1>Notifications</h1>
+      <p class="subtitle">Incoming AMP and system alerts sorted newest first.</p>
+    </div>
+    <nav class="top-actions">
+      <a class="button secondary" href="/">Dashboard</a>
+      <a class="button secondary" href="/admin">Admin</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="notification-list">
+      ${notifications.length ? notifications.map((notification) => `
+        <article class="glass-panel notification-card level-${notification.level}">
+          <div class="notification-header">
+            <strong>${notification.title}</strong>
+            <span>${new Date(notification.timestamp).toLocaleString()}</span>
+          </div>
+          <p>${notification.message}</p>
+          <pre>${JSON.stringify(notification.payload, null, 2)}</pre>
+        </article>
+      `).join('') : '<div class="glass-panel empty-state">No notifications yet.</div>'}
+    </section>
+  </main>
+`, settings, theme, customCss, title }) %>
